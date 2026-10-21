@@ -1,7 +1,8 @@
+
 <?php
 
 $host = getenv('DB_HOST');
-$port = getenv('DB_PORT') ?: '5432';
+$port = getenv('DB_PORT') ?: '6543';
 $dbname = getenv('DB_NAME') ?: 'postgres';
 $username = getenv('DB_USER');
 $password = getenv('DB_PASSWORD');
@@ -21,7 +22,7 @@ try {
         PDO::ATTR_EMULATE_PREPARES => false,
     ]);
 } catch (PDOException $e) {
-    error_log('Database connection failed: ' . $e->getMessage());
+    error_log('Supabase connection error: ' . $e->getMessage());
     http_response_code(500);
-    exit('Database connection failed. Please check server logs.');
+    exit('Database connection failed. Check Vercel Function Logs.');
 }
